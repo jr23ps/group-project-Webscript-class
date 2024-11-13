@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weightlifting Tracker</title>
+    <style>
+ body {
+     font-family: Arial, sans-serif;
+     margin: 0;
+     padding: 0;
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+     background-image: linear-gradient(to left, purple, blue, pink);
+        }
+        header {
+            background-image: linear-gradient(to right, gray, black, white);
+            color: white;
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+ .container {
+            width: 90%;
+            Max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+        display: block;
+            margin-bottom: 0.5rem;
+        }
+  .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            box-sizing: border-box;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:disabled {
+            background-color: #ccc;
+        }
+        .exercise-list {
+            list-style: none;
+            padding: 0;
+        }
+        .exercise-list li {
+            background: #eee;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-left: 5px solid #333;
+        }
+	a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+	text-shadow: 1px 1px;
+}
+
+/* navbar styling */
+.navbar{
+    display: flex;
+    height: 5rem;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-bottom: 2px solid rgb(223, 251, 219);
+}
+
+/* logo style  */
+.logo img{
+    width: 4rem;
+    height: 4rem;
+    margin-left:1rem;
+}
+
+.hamburger-menu{
+    padding-right: 1.5rem;
+    cursor: pointer;
+}
+
+.hamburger-menu .line{
+   display: block;
+   width:2.5rem;
+   height: 2px;
+   margin-bottom: 10px;
+   background-color: black;
+   cursor: pointer;
+}
+
+.nav-menu{
+    position: fixed;
+    width: 94%;
+    top: 6rem;
+    left: 18px;
+    background-color: rgb(255, 255, 255);
+    font-weight: 600;
+
+}
+.nav-menu a{
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+}
+.nav-menu a:hover{
+    background-color: rgb(223, 251, 219);
+}
+
+.hide{
+    display: none;
+}
+
+/* for Desktop view  */
+@media screen and (min-width:600px){
+    .navbar{
+        justify-content: space-around;
+    }
+    .nav-menu{
+        display: block;
+        position: static;
+        width: auto;
+        margin-right:20px;
+        background: none;
+    }
+    .nav-menu a{
+        display: inline-block;
+        padding: 15px 20px;
+    }
+    .nav-menu a:hover{
+        background-color: rgb(223, 251, 219);
+        border-radius: 5px;
+    }
+    .hamburger-menu{
+        display: none;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        
+		<nav class="navbar">
+            <div class="logo">
+                <a href="/">
+                    <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200x200-min.png"
+                        
+                </a>
+            </div>
+            <div class="hamburger-menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+            <div class="nav-menu hide">
+                <a href="#">Home</a>
+                <a href="#">Nutrition</a>
+                <a href="#">Supplement</a>
+                <a href="#">Exercise</a>
+            </div>
+        </nav>
+</header>
+    <div class="container">
+        <div class="form-group">
+<label for="exercise">Exercise</Label>
+<Input type="text" id="exercise" placeholder="Enter exercise name">
+</div>
+<div class="form-group">
+<label for="weight">Weight (lbs)</label>
+<input type="number" id="weight" placeholder="Enter weight">
+</div>
+<div class="form-group">
+<label for="reps">Reps</label>
+<input type="number" id="reps" placeholder="Enter reps">
+</div>
+<Button class="btn" id="addExerciseBtn">Add Exercise</button>
+<ul class="exercise-list" id="exerciseList"></ul>
+ </div>
+    <script>
+        document.getElementById('addExerciseBtn').addEventListener('click', function() {
+            const exercise = document.getElementById('exercise').value;
+            const weight = document.getElementById('weight').value;
+            const reps = document.getElementById('reps').value;
+
+            if (exercise && weight && reps) {
+            const exerciseList = document.getElementById('exerciseList');
+            const li = document.createElement('li');
+         li.textContent = `${exercise} - ${weight} lbs - ${reps} reps`;
+                exerciseList.appendChild(li);
+
+                document.getElementById('exercise').value = '';
+                document.getElementById('weight').value = '';
+                document.getElementById('reps').value = '';
+    }
+} );
+</script>
+<script>
+const hamburger = document.querySelector('.hamburger-menu');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('hide');
+});
+</script>
+</body>
+
+</html>
